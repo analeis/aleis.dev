@@ -1,0 +1,108 @@
+---
+title: Meadow
+layout: meadow
+zone: meadow
+---
+
+<div class="v-dark">
+  <h1>Meadow</h1>
+  <p class="lede">A smoky color palette that's meant to be easy on the eyes.</p>
+  <div class="pal-actions">
+    <a class="btn" href="/assets/meadow-poster.png" download="meadow-poster.png">download poster</a>
+    <button type="button" class="btn" data-theme-toggle data-light="switch to Meadow Light" data-dark="switch to Meadow" hidden>switch to Meadow Light</button>
+    <span class="muted">click any color to copy it</span>
+  </div>
+
+  <div class="pal-label"><span>ground</span><span>neutrals</span></div>
+  <div class="swatches">
+    <button type="button" class="swatch" data-hex="#17131b" aria-label="copy night #17131b"><span class="chip" style="background:#17131b"></span><span>night</span><span class="hex">#17131b</span></button>
+    <button type="button" class="swatch" data-hex="#1f1a24" aria-label="copy base #1f1a24"><span class="chip" style="background:#1f1a24"></span><span>base</span><span class="hex">#1f1a24</span></button>
+    <button type="button" class="swatch" data-hex="#2a2431" aria-label="copy surface #2a2431"><span class="chip" style="background:#2a2431"></span><span>surface</span><span class="hex">#2a2431</span></button>
+    <button type="button" class="swatch" data-hex="#3a3245" aria-label="copy overlay #3a3245"><span class="chip" style="background:#3a3245"></span><span>overlay</span><span class="hex">#3a3245</span></button>
+    <button type="button" class="swatch" data-hex="#5f5769" aria-label="copy dim #5f5769"><span class="chip" style="background:#5f5769"></span><span>dim</span><span class="hex">#5f5769</span></button>
+    <button type="button" class="swatch" data-hex="#958aa3" aria-label="copy muted #958aa3"><span class="chip" style="background:#958aa3"></span><span>muted</span><span class="hex">#958aa3</span></button>
+    <button type="button" class="swatch" data-hex="#b9b0c6" aria-label="copy subtle #b9b0c6"><span class="chip" style="background:#b9b0c6"></span><span>subtle</span><span class="hex">#b9b0c6</span></button>
+    <button type="button" class="swatch" data-hex="#ebe7f0" aria-label="copy text #ebe7f0"><span class="chip" style="background:#ebe7f0"></span><span>text</span><span class="hex">#ebe7f0</span></button>
+  </div>
+
+  <div class="pal-label"><span>flowers</span><span>main / soft / tint</span></div>
+  <div class="swatches flowers">
+    <div class="flower"><span>poppy</span><button type="button" class="shade" data-hex="#d68583" aria-label="copy poppy main #d68583"><span class="chip" style="background:#d68583"></span><span class="hex">#d68583</span></button><button type="button" class="shade" data-hex="#b06a69" aria-label="copy poppy soft #b06a69"><span class="chip" style="background:#b06a69"></span><span class="hex">#b06a69</span></button><button type="button" class="shade" data-hex="#623b3b" aria-label="copy poppy tint #623b3b"><span class="chip" style="background:#623b3b"></span><span class="hex">#623b3b</span></button></div>
+    <div class="flower"><span>marigold</span><button type="button" class="shade" data-hex="#e9b17c" aria-label="copy marigold main #e9b17c"><span class="chip" style="background:#e9b17c"></span><span class="hex">#e9b17c</span></button><button type="button" class="shade" data-hex="#c49365" aria-label="copy marigold soft #c49365"><span class="chip" style="background:#c49365"></span><span class="hex">#c49365</span></button><button type="button" class="shade" data-hex="#5d4127" aria-label="copy marigold tint #5d4127"><span class="chip" style="background:#5d4127"></span><span class="hex">#5d4127</span></button></div>
+    <div class="flower"><span>sage</span><button type="button" class="shade" data-hex="#a4bba9" aria-label="copy sage main #a4bba9"><span class="chip" style="background:#a4bba9"></span><span class="hex">#a4bba9</span></button><button type="button" class="shade" data-hex="#879b8c" aria-label="copy sage soft #879b8c"><span class="chip" style="background:#879b8c"></span><span class="hex">#879b8c</span></button><button type="button" class="shade" data-hex="#3a4d3e" aria-label="copy sage tint #3a4d3e"><span class="chip" style="background:#3a4d3e"></span><span class="hex">#3a4d3e</span></button></div>
+    <div class="flower"><span>dew</span><button type="button" class="shade" data-hex="#84c7d5" aria-label="copy dew main #84c7d5"><span class="chip" style="background:#84c7d5"></span><span class="hex">#84c7d5</span></button><button type="button" class="shade" data-hex="#6ca6b2" aria-label="copy dew soft #6ca6b2"><span class="chip" style="background:#6ca6b2"></span><span class="hex">#6ca6b2</span></button><button type="button" class="shade" data-hex="#1e5059" aria-label="copy dew tint #1e5059"><span class="chip" style="background:#1e5059"></span><span class="hex">#1e5059</span></button></div>
+    <div class="flower"><span>cornflower</span><button type="button" class="shade" data-hex="#9cb8eb" aria-label="copy cornflower main #9cb8eb"><span class="chip" style="background:#9cb8eb"></span><span class="hex">#9cb8eb</span></button><button type="button" class="shade" data-hex="#8099c5" aria-label="copy cornflower soft #8099c5"><span class="chip" style="background:#8099c5"></span><span class="hex">#8099c5</span></button><button type="button" class="shade" data-hex="#374866" aria-label="copy cornflower tint #374866"><span class="chip" style="background:#374866"></span><span class="hex">#374866</span></button></div>
+    <div class="flower"><span>lavender</span><button type="button" class="shade" data-hex="#c1b0e7" aria-label="copy lavender main #c1b0e7"><span class="chip" style="background:#c1b0e7"></span><span class="hex">#c1b0e7</span></button><button type="button" class="shade" data-hex="#a192c2" aria-label="copy lavender soft #a192c2"><span class="chip" style="background:#a192c2"></span><span class="hex">#a192c2</span></button><button type="button" class="shade" data-hex="#4c4161" aria-label="copy lavender tint #4c4161"><span class="chip" style="background:#4c4161"></span><span class="hex">#4c4161</span></button></div>
+  </div>
+
+  <div class="pal-label"><span>terminal</span><span>ansi 0-15</span></div>
+  <div class="swatches">
+    <button type="button" class="swatch term" data-hex="#2a2431" aria-label="copy 0 black #2a2431"><span class="chip" style="background:#2a2431"></span><span>0 black</span><span class="hex">#2a2431</span></button>
+    <button type="button" class="swatch term" data-hex="#b06a69" aria-label="copy 1 red #b06a69"><span class="chip" style="background:#b06a69"></span><span>1 red</span><span class="hex">#b06a69</span></button>
+    <button type="button" class="swatch term" data-hex="#879b8c" aria-label="copy 2 green #879b8c"><span class="chip" style="background:#879b8c"></span><span>2 green</span><span class="hex">#879b8c</span></button>
+    <button type="button" class="swatch term" data-hex="#c49365" aria-label="copy 3 yellow #c49365"><span class="chip" style="background:#c49365"></span><span>3 yellow</span><span class="hex">#c49365</span></button>
+    <button type="button" class="swatch term" data-hex="#8099c5" aria-label="copy 4 blue #8099c5"><span class="chip" style="background:#8099c5"></span><span>4 blue</span><span class="hex">#8099c5</span></button>
+    <button type="button" class="swatch term" data-hex="#a192c2" aria-label="copy 5 magenta #a192c2"><span class="chip" style="background:#a192c2"></span><span>5 magenta</span><span class="hex">#a192c2</span></button>
+    <button type="button" class="swatch term" data-hex="#6ca6b2" aria-label="copy 6 cyan #6ca6b2"><span class="chip" style="background:#6ca6b2"></span><span>6 cyan</span><span class="hex">#6ca6b2</span></button>
+    <button type="button" class="swatch term" data-hex="#b9b0c6" aria-label="copy 7 white #b9b0c6"><span class="chip" style="background:#b9b0c6"></span><span>7 white</span><span class="hex">#b9b0c6</span></button>
+    <button type="button" class="swatch term" data-hex="#5f5769" aria-label="copy 8 black #5f5769"><span class="chip" style="background:#5f5769"></span><span>8 black</span><span class="hex">#5f5769</span></button>
+    <button type="button" class="swatch term" data-hex="#d68583" aria-label="copy 9 red #d68583"><span class="chip" style="background:#d68583"></span><span>9 red</span><span class="hex">#d68583</span></button>
+    <button type="button" class="swatch term" data-hex="#a4bba9" aria-label="copy 10 green #a4bba9"><span class="chip" style="background:#a4bba9"></span><span>10 green</span><span class="hex">#a4bba9</span></button>
+    <button type="button" class="swatch term" data-hex="#e9b17c" aria-label="copy 11 yellow #e9b17c"><span class="chip" style="background:#e9b17c"></span><span>11 yellow</span><span class="hex">#e9b17c</span></button>
+    <button type="button" class="swatch term" data-hex="#9cb8eb" aria-label="copy 12 blue #9cb8eb"><span class="chip" style="background:#9cb8eb"></span><span>12 blue</span><span class="hex">#9cb8eb</span></button>
+    <button type="button" class="swatch term" data-hex="#c1b0e7" aria-label="copy 13 magenta #c1b0e7"><span class="chip" style="background:#c1b0e7"></span><span>13 magenta</span><span class="hex">#c1b0e7</span></button>
+    <button type="button" class="swatch term" data-hex="#84c7d5" aria-label="copy 14 cyan #84c7d5"><span class="chip" style="background:#84c7d5"></span><span>14 cyan</span><span class="hex">#84c7d5</span></button>
+    <button type="button" class="swatch term" data-hex="#ebe7f0" aria-label="copy 15 white #ebe7f0"><span class="chip" style="background:#ebe7f0"></span><span>15 white</span><span class="hex">#ebe7f0</span></button>
+  </div>
+</div>
+<div class="v-light">
+  <h1>Meadow Light</h1>
+  <p class="lede">A smoky color palette that's meant to be easy on the eyes.</p>
+  <div class="pal-actions">
+    <a class="btn" href="/assets/meadow-light-poster.png" download="meadow-light-poster.png">download poster</a>
+    <button type="button" class="btn" data-theme-toggle data-light="switch to Meadow Light" data-dark="switch to Meadow" hidden>switch to Meadow</button>
+    <span class="muted">click any color to copy it</span>
+  </div>
+
+  <div class="pal-label"><span>ground</span><span>neutrals</span></div>
+  <div class="swatches">
+    <button type="button" class="swatch" data-hex="#efdee4" aria-label="copy night #efdee4"><span class="chip" style="background:#efdee4"></span><span>night</span><span class="hex">#efdee4</span></button>
+    <button type="button" class="swatch" data-hex="#f7e8ee" aria-label="copy base #f7e8ee"><span class="chip" style="background:#f7e8ee"></span><span>base</span><span class="hex">#f7e8ee</span></button>
+    <button type="button" class="swatch" data-hex="#fbf1f5" aria-label="copy surface #fbf1f5"><span class="chip" style="background:#fbf1f5"></span><span>surface</span><span class="hex">#fbf1f5</span></button>
+    <button type="button" class="swatch" data-hex="#e1ced7" aria-label="copy overlay #e1ced7"><span class="chip" style="background:#e1ced7"></span><span>overlay</span><span class="hex">#e1ced7</span></button>
+    <button type="button" class="swatch" data-hex="#ab98a5" aria-label="copy dim #ab98a5"><span class="chip" style="background:#ab98a5"></span><span>dim</span><span class="hex">#ab98a5</span></button>
+    <button type="button" class="swatch" data-hex="#857284" aria-label="copy muted #857284"><span class="chip" style="background:#857284"></span><span>muted</span><span class="hex">#857284</span></button>
+    <button type="button" class="swatch" data-hex="#5f4e63" aria-label="copy subtle #5f4e63"><span class="chip" style="background:#5f4e63"></span><span>subtle</span><span class="hex">#5f4e63</span></button>
+    <button type="button" class="swatch" data-hex="#382a3d" aria-label="copy text #382a3d"><span class="chip" style="background:#382a3d"></span><span>text</span><span class="hex">#382a3d</span></button>
+  </div>
+
+  <div class="pal-label"><span>flowers</span><span>main / soft / tint</span></div>
+  <div class="swatches flowers">
+    <div class="flower"><span>poppy</span><button type="button" class="shade" data-hex="#b9454c" aria-label="copy poppy main #b9454c"><span class="chip" style="background:#b9454c"></span><span class="hex">#b9454c</span></button><button type="button" class="shade" data-hex="#c86265" aria-label="copy poppy soft #c86265"><span class="chip" style="background:#c86265"></span><span class="hex">#c86265</span></button><button type="button" class="shade" data-hex="#f8d4d3" aria-label="copy poppy tint #f8d4d3"><span class="chip" style="background:#f8d4d3"></span><span class="hex">#f8d4d3</span></button></div>
+    <div class="flower"><span>marigold</span><button type="button" class="shade" data-hex="#b76316" aria-label="copy marigold main #b76316"><span class="chip" style="background:#b76316"></span><span class="hex">#b76316</span></button><button type="button" class="shade" data-hex="#c57b3d" aria-label="copy marigold soft #c57b3d"><span class="chip" style="background:#c57b3d"></span><span class="hex">#c57b3d</span></button><button type="button" class="shade" data-hex="#f6dac2" aria-label="copy marigold tint #f6dac2"><span class="chip" style="background:#f6dac2"></span><span class="hex">#f6dac2</span></button></div>
+    <div class="flower"><span>sage</span><button type="button" class="shade" data-hex="#507357" aria-label="copy sage main #507357"><span class="chip" style="background:#507357"></span><span class="hex">#507357</span></button><button type="button" class="shade" data-hex="#6b8970" aria-label="copy sage soft #6b8970"><span class="chip" style="background:#6b8970"></span><span class="hex">#6b8970</span></button><button type="button" class="shade" data-hex="#d0e2d3" aria-label="copy sage tint #d0e2d3"><span class="chip" style="background:#d0e2d3"></span><span class="hex">#d0e2d3</span></button></div>
+    <div class="flower"><span>dew</span><button type="button" class="shade" data-hex="#217584" aria-label="copy dew main #217584"><span class="chip" style="background:#217584"></span><span class="hex">#217584</span></button><button type="button" class="shade" data-hex="#4c8b98" aria-label="copy dew soft #4c8b98"><span class="chip" style="background:#4c8b98"></span><span class="hex">#4c8b98</span></button><button type="button" class="shade" data-hex="#bfe4ec" aria-label="copy dew tint #bfe4ec"><span class="chip" style="background:#bfe4ec"></span><span class="hex">#bfe4ec</span></button></div>
+    <div class="flower"><span>cornflower</span><button type="button" class="shade" data-hex="#4a68a0" aria-label="copy cornflower main #4a68a0"><span class="chip" style="background:#4a68a0"></span><span class="hex">#4a68a0</span></button><button type="button" class="shade" data-hex="#6680b1" aria-label="copy cornflower soft #6680b1"><span class="chip" style="background:#6680b1"></span><span class="hex">#6680b1</span></button><button type="button" class="shade" data-hex="#ceddf8" aria-label="copy cornflower tint #ceddf8"><span class="chip" style="background:#ceddf8"></span><span class="hex">#ceddf8</span></button></div>
+    <div class="flower"><span>lavender</span><button type="button" class="shade" data-hex="#715c97" aria-label="copy lavender main #715c97"><span class="chip" style="background:#715c97"></span><span class="hex">#715c97</span></button><button type="button" class="shade" data-hex="#8775aa" aria-label="copy lavender soft #8775aa"><span class="chip" style="background:#8775aa"></span><span class="hex">#8775aa</span></button><button type="button" class="shade" data-hex="#e0d7f4" aria-label="copy lavender tint #e0d7f4"><span class="chip" style="background:#e0d7f4"></span><span class="hex">#e0d7f4</span></button></div>
+  </div>
+
+  <div class="pal-label"><span>terminal</span><span>ansi 0-15</span></div>
+  <div class="swatches">
+    <button type="button" class="swatch term" data-hex="#fbf1f5" aria-label="copy 0 black #fbf1f5"><span class="chip" style="background:#fbf1f5"></span><span>0 black</span><span class="hex">#fbf1f5</span></button>
+    <button type="button" class="swatch term" data-hex="#c86265" aria-label="copy 1 red #c86265"><span class="chip" style="background:#c86265"></span><span>1 red</span><span class="hex">#c86265</span></button>
+    <button type="button" class="swatch term" data-hex="#6b8970" aria-label="copy 2 green #6b8970"><span class="chip" style="background:#6b8970"></span><span>2 green</span><span class="hex">#6b8970</span></button>
+    <button type="button" class="swatch term" data-hex="#c57b3d" aria-label="copy 3 yellow #c57b3d"><span class="chip" style="background:#c57b3d"></span><span>3 yellow</span><span class="hex">#c57b3d</span></button>
+    <button type="button" class="swatch term" data-hex="#6680b1" aria-label="copy 4 blue #6680b1"><span class="chip" style="background:#6680b1"></span><span>4 blue</span><span class="hex">#6680b1</span></button>
+    <button type="button" class="swatch term" data-hex="#8775aa" aria-label="copy 5 magenta #8775aa"><span class="chip" style="background:#8775aa"></span><span>5 magenta</span><span class="hex">#8775aa</span></button>
+    <button type="button" class="swatch term" data-hex="#4c8b98" aria-label="copy 6 cyan #4c8b98"><span class="chip" style="background:#4c8b98"></span><span>6 cyan</span><span class="hex">#4c8b98</span></button>
+    <button type="button" class="swatch term" data-hex="#5f4e63" aria-label="copy 7 white #5f4e63"><span class="chip" style="background:#5f4e63"></span><span>7 white</span><span class="hex">#5f4e63</span></button>
+    <button type="button" class="swatch term" data-hex="#ab98a5" aria-label="copy 8 black #ab98a5"><span class="chip" style="background:#ab98a5"></span><span>8 black</span><span class="hex">#ab98a5</span></button>
+    <button type="button" class="swatch term" data-hex="#b9454c" aria-label="copy 9 red #b9454c"><span class="chip" style="background:#b9454c"></span><span>9 red</span><span class="hex">#b9454c</span></button>
+    <button type="button" class="swatch term" data-hex="#507357" aria-label="copy 10 green #507357"><span class="chip" style="background:#507357"></span><span>10 green</span><span class="hex">#507357</span></button>
+    <button type="button" class="swatch term" data-hex="#b76316" aria-label="copy 11 yellow #b76316"><span class="chip" style="background:#b76316"></span><span>11 yellow</span><span class="hex">#b76316</span></button>
+    <button type="button" class="swatch term" data-hex="#4a68a0" aria-label="copy 12 blue #4a68a0"><span class="chip" style="background:#4a68a0"></span><span>12 blue</span><span class="hex">#4a68a0</span></button>
+    <button type="button" class="swatch term" data-hex="#715c97" aria-label="copy 13 magenta #715c97"><span class="chip" style="background:#715c97"></span><span>13 magenta</span><span class="hex">#715c97</span></button>
+    <button type="button" class="swatch term" data-hex="#217584" aria-label="copy 14 cyan #217584"><span class="chip" style="background:#217584"></span><span>14 cyan</span><span class="hex">#217584</span></button>
+    <button type="button" class="swatch term" data-hex="#382a3d" aria-label="copy 15 white #382a3d"><span class="chip" style="background:#382a3d"></span><span>15 white</span><span class="hex">#382a3d</span></button>
+  </div>
+</div>

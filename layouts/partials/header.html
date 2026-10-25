@@ -1,0 +1,20 @@
+{{- $zone := .Params.zone | default "meadow" -}}
+{{- $p := .RelPermalink -}}
+<header class="top">
+  <div class="wordmark">
+    {{- if eq $zone "cards" }}
+    <a href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
+    {{- else }}
+    <a href="/" aria-label="aleis, home"><canvas width="72" height="18"></canvas></a>
+    <button type="button" aria-label="pick a petal"></button>
+    {{- end }}
+  </div>
+  <nav class="nav" aria-label="Main">
+    <a class="{{ if hasPrefix $p "/writing/" }}active{{ end }}" href="/writing/">writing</a>
+    <a class="{{ if hasPrefix $p "/projects/" }}active{{ end }}" href="/projects/">projects</a>
+    <a class="{{ if hasPrefix $p "/software/" }}active{{ end }}" href="/software/">software</a>
+    <a class="{{ if hasPrefix $p "/meadow/" }}active{{ end }}" href="/meadow/">meadow</a>
+    <a class="{{ if hasPrefix $p "/friends/" }}active{{ end }}" href="/friends/">friends</a>
+    <a class="{{ if hasPrefix $p "/about/" }}active{{ end }}" href="/about/">about</a>
+  </nav>
+</header>

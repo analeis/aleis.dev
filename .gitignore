@@ -1,0 +1,16 @@
+# Hugo build output
+/public/
+/resources/
+.hugo_build.lock
+
+# Editor / OS noise
+.DS_Store
+.vscode/
+.idea/
+*.sw?
+*.log
+__pycache__/
+
+# Secrets
+.env
+.env.local
