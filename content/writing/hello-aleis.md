@@ -20,7 +20,7 @@ files.
 
 ## Type test
 
-You can use **bold**, *italic*, `inline code` and [links](https://gohugo.io/).
+You can use **bold**, _italic_, `inline code` and [links](https://gohugo.io/).
 Code blocks look like this:
 
 ```bash

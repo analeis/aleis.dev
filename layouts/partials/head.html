@@ -1,15 +1,33 @@
-{{- $zone := .Params.zone | default "meadow" -}}
+{{- $mode := .Params.mode | default "meadow" -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Description | default site.Params.description }}">
-{{- if eq $zone "cards" }}
-<style>html{color-scheme:light;background:#f2f6ff}</style>
-{{- else }}
-<script>(function(){var e=document.documentElement;e.className+=' js';try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')e.setAttribute('data-theme',t);}catch(n){}})();</script>
-<style>html{color-scheme:dark;background:#1f1a24}@media(prefers-color-scheme:light){html:not([data-theme=dark]){color-scheme:light;background:#f7e8ee}}html[data-theme=light]{color-scheme:light;background:#f7e8ee}</style>
-{{- end }}
-<meta name="theme-color" content="{{ if eq $zone "cards" }}#f2f6ff{{ else }}#c1b0e7{{ end }}">
+
+<!-- Inline mode initialization (prevents flash) -->
+<script>
+(function(){
+  var e=document.documentElement;
+  try{
+    var t=localStorage.getItem('site-mode');
+    var urlMode=new URLSearchParams(window.location.search).get('mode');
+    var mode=t || urlMode || 'meadow';
+    if(mode==='meadow'||mode==='dacian') e.setAttribute('data-mode',mode);
+  }catch(n){}
+})();
+</script>
+
+<!-- CSS: base + both mode styles (visibility controlled by data-mode) -->
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/meadow.css">
+<link rel="stylesheet" href="/css/dacian.css">
+<meta name="theme-color" content="{{ if eq $mode "meadow" }}#c1b0e7{{ else }}#104088{{ end }}">
+
+<!-- Font preloads -->
+<link rel="preload" href="/assets/aleis-dot.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/googlesans/v28/4UaGrENHsxJlGDuGo1OIlL3Owp5eKQ.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/googlesanscode/v12/k3kZo8kEwt-Tshb7wcTFsEwmt4pqjC8JtVAt1cDo4VeI3DCu.woff2" as="font" type="font/woff2" crossorigin>
+
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}">
 <meta property="og:description" content="{{ .Description | default site.Params.description }}">
 <meta property="og:image" content="{{ "assets/og.png" | absURL }}">
@@ -22,7 +40,3 @@
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}: writing" href="/feed.xml">
 <link rel="canonical" href="{{ .Permalink }}">
-{{- if ne $zone "cards" }}
-<link rel="preload" href="/assets/aleis-dot.woff2" as="font" type="font/woff2" crossorigin>
-{{- end }}
-<link rel="stylesheet" href="/css/style.css">

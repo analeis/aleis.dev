@@ -13,8 +13,8 @@ layout: page
   </div>
   <div class="col">
     <span class="col-label">uses</span>
-    <span class="col-item">Hugo, plain HTML, CSS and JavaScript.</span>
-    <span class="col-item">Linux on the desktop, macOS on the road.</span>
+    <span class="col-item">Hugo, HTML, CSS and TypeScript.</span>
+    <span class="col-item">Linux on the desktop, exploring Unix and BSDs for fun.</span>
     <span class="col-item">A mechanical keyboard and too many tabs.</span>
   </div>
 </div>

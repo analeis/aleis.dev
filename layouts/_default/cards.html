@@ -1,22 +1,36 @@
-{{ define "main" }}
-{{- $deck := false }}
-{{- range where hugo.Data.cards "name" .Params.deck }}{{ $deck = . }}{{ end }}
-<div class="page cards-page">
+{{ define "main" }} {{- $deck := false }} {{- range where hugo.Data.cards "name"
+.Params.deck }}{{ $deck = . }}{{ end }}
+<div class="page">
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
-  {{- with $deck }}
-  <div class="cards-grid">
+  {{ with .Description }}
+  <p class="lede">{{ . }}</p>
+  {{ end }} {{- with $deck }}
+  <!-- Dacian mode: card grid -->
+  <div class="grid">
     {{- range .cards }}
-    <a class="card" href="{{ .url }}">
+    <a class="grid-item grow" href="{{ .url }}">
       <h2>{{ .name }}</h2>
       <p>{{ .description }}</p>
-      <span class="card-tri" aria-hidden="true">◢</span>
+      <span class="triangle-dark" aria-hidden="true">◢</span>
+    </a>
+    {{- end }}
+  </div>
+  <!-- Meadow mode: list -->
+  <div class="proj-list">
+    {{- range .cards }}
+    <a class="proj" href="{{ .url }}" target="_blank" rel="noopener">
+      <span class="proj-head">
+        <span class="row-title">{{ .name }}</span>
+        <span class="lang">{{ .name }}</span>
+      </span>
+      <span class="row-desc">{{ .description }}</span>
     </a>
     {{- end }}
   </div>
   {{- else }}
-  <p class="empty">No cards defined for "{{ .Params.deck }}" in data/cards.json.</p>
-  {{- end }}
-  {{ .Content }}
+  <p class="empty">
+    No cards defined for "{{ .Params.deck }}" in data/cards.json.
+  </p>
+  {{- end }} {{ .Content }}
 </div>
 {{ end }}

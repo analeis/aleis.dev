@@ -5,7 +5,7 @@ Writes:
   static/88x31.png and static/88x31.gif
   static/assets/og.png
   static/assets/meadow-poster.png
-  static/assets/meadow-light-poster.png
+  static/assets/dacian-poster.png
 
 Needs Pillow, fonttools and brotli. The pixel font is read from
 static/assets/aleis-dot.woff2.
@@ -91,7 +91,7 @@ def wordmark(img, x, y, scale, ink, petal, center):
 
 
 PALETTES = {
-    "dark": {
+    "meadow": {
         "bg": "#1f1a24", "text": "#ebe7f0", "head": "#f1edf5", "body": "#e3dde9",
         "subtle": "#b9b0c6", "muted": "#958aa3", "accent": "#c1b0e7",
         "line": "#3a3245", "sage": "#a4bba9", "stem": "#556658",
@@ -118,7 +118,7 @@ PALETTES = {
         ],
         "petal": "#c1b0e7", "center": "#a4bba9",
     },
-    "light": {
+    "dacian": {
         "bg": "#f7e8ee", "text": "#382a3d", "head": "#2e2133", "body": "#423448",
         "subtle": "#5f4e63", "muted": "#857284", "accent": "#715c97",
         "line": "#e1ced7", "sage": "#507357", "stem": "#6b8970",
@@ -151,7 +151,7 @@ SITE = "aleis.pages.dev"
 
 
 def make_badge():
-    p = PALETTES["dark"]
+    p = PALETTES["meadow"]
     img = Image.new("RGB", (88, 31), p["bg"])
     wordmark(img, 8, 7, 2, p["text"], p["petal"], p["center"])
     img.save(os.path.join(ROOT, "static", "88x31.png"))
@@ -162,7 +162,7 @@ def make_badge():
 
 
 def make_og():
-    p = PALETTES["dark"]
+    p = PALETTES["meadow"]
     W, H = 1200, 630
     img = Image.new("RGB", (W, H), p["bg"])
     wordmark(img, 80, 80, 14, p["text"], p["petal"], p["center"])
@@ -183,18 +183,18 @@ def make_og():
     print("wrote og.png")
 
 
-def make_poster(light=False):
-    p = PALETTES["light" if light else "dark"]
+def make_poster(dacian=False):
+    p = PALETTES["dacian" if dacian else "meadow"]
     W, H = 1320, 1975
     img = Image.new("RGB", (W, H), p["bg"])
     d = ImageDraw.Draw(img)
     M = 80
 
     wordmark(img, M, 90, 8, p["text"], p["petal"], p["center"])
-    d.text((W - M, 110), "meadow light" if light else "meadow", font=font(24),
+    d.text((W - M, 110), "dacian" if dacian else "meadow", font=font(24),
            fill=p["muted"], anchor="rt")
 
-    d.text((M, 250), "Meadow Light" if light else "Meadow", font=font(96), fill=p["head"])
+    d.text((M, 250), "Dacian" if dacian else "Meadow", font=font(96), fill=p["head"])
     d.text((M, 380), "A smoky color palette that's meant to be easy on the eyes.",
            font=font(32), fill=p["subtle"])
 
@@ -251,7 +251,7 @@ def make_poster(light=False):
         fl = flower_sprite(size, flcols[i], p["center"])
         img.paste(fl, (x, y), fl)
 
-    out = "meadow-light-poster.png" if light else "meadow-poster.png"
+    out = "dacian-poster.png" if dacian else "meadow-poster.png"
     img.save(os.path.join(ASSETS, out), optimize=True)
     print("wrote", out)
 
@@ -259,5 +259,5 @@ def make_poster(light=False):
 if __name__ == "__main__":
     make_badge()
     make_og()
-    make_poster(light=False)
-    make_poster(light=True)
+    make_poster(dacian=False)
+    make_poster(dacian=True)

@@ -1,12 +1,12 @@
-{{- $zone := .Params.zone | default "meadow" -}}
+{{- $mode := .Params.mode | default "meadow" -}}
 {{- $p := .RelPermalink -}}
 <header class="top">
   <div class="wordmark">
-    {{- if eq $zone "cards" }}
-    <a href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
-    {{- else }}
+    {{- if eq $mode "meadow" }}
     <a href="/" aria-label="aleis, home"><canvas width="72" height="18"></canvas></a>
     <button type="button" aria-label="pick a petal"></button>
+    {{- else if eq $mode "dacian" }}
+    <a href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
     {{- end }}
   </div>
   <nav class="nav" aria-label="Main">
@@ -16,5 +16,9 @@
     <a class="{{ if hasPrefix $p "/meadow/" }}active{{ end }}" href="/meadow/">meadow</a>
     <a class="{{ if hasPrefix $p "/friends/" }}active{{ end }}" href="/friends/">friends</a>
     <a class="{{ if hasPrefix $p "/about/" }}active{{ end }}" href="/about/">about</a>
+    <!-- Mode toggle -->
+    <button type="button" class="theme" data-mode-toggle
+      data-meadow="switch to Meadow" data-dacian="switch to Dacian"
+      hidden aria-label="Switch theme"></button>
   </nav>
 </header>

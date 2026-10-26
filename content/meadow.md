@@ -1,7 +1,7 @@
 ---
 title: Meadow
 layout: meadow
-zone: meadow
+mode: meadow
 ---
 
 <div class="v-dark">
@@ -9,7 +9,7 @@ zone: meadow
   <p class="lede">A smoky color palette that's meant to be easy on the eyes.</p>
   <div class="pal-actions">
     <a class="btn" href="/assets/meadow-poster.png" download="meadow-poster.png">download poster</a>
-    <button type="button" class="btn" data-theme-toggle data-light="switch to Meadow Light" data-dark="switch to Meadow" hidden>switch to Meadow Light</button>
+    <button type="button" class="btn" data-mode-toggle data-meadow="switch to Meadow" data-dacian="switch to Dacian" hidden>switch to Dacian</button>
     <span class="muted">click any color to copy it</span>
   </div>
 
@@ -56,11 +56,11 @@ zone: meadow
   </div>
 </div>
 <div class="v-light">
-  <h1>Meadow Light</h1>
+  <h1>Dacian</h1>
   <p class="lede">A smoky color palette that's meant to be easy on the eyes.</p>
   <div class="pal-actions">
-    <a class="btn" href="/assets/meadow-light-poster.png" download="meadow-light-poster.png">download poster</a>
-    <button type="button" class="btn" data-theme-toggle data-light="switch to Meadow Light" data-dark="switch to Meadow" hidden>switch to Meadow</button>
+    <a class="btn" href="/assets/dacian-poster.png" download="dacian-poster.png">download poster</a>
+    <button type="button" class="btn" data-mode-toggle data-meadow="switch to Meadow" data-dacian="switch to Dacian" hidden>switch to Meadow</button>
     <span class="muted">click any color to copy it</span>
   </div>
 

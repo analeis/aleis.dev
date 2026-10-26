@@ -1,32 +1,31 @@
-{{- $zone := .Params.zone | default "meadow" -}}
-<!DOCTYPE html>
-<html lang="{{ site.Language.Locale }}">
-<head>
-  {{ partial "head.html" . }}
-</head>
-<body class="zone-{{ $zone }}" data-page="{{ if .IsHome }}home{{ else }}page{{ end }}">
-  <div class="root">
-    <canvas class="meadow" aria-hidden="true"></canvas>
+{{- $mode := .Params.mode | default "meadow" -}}
+<!doctype html>
+<html lang="{{ site.Language.Locale }}" data-mode="{{ $mode }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body
+    class="mode-{{ $mode }}"
+    data-page="{{ if .IsHome }}home{{ else }}page{{ end }}"
+  >
+    <div class="root">
+      <canvas class="meadow" aria-hidden="true"></canvas>
 
-    <div class="wrap">
-      {{ partial "header.html" . }}
+      <div class="wrap">
+        {{ partial "header.html" . }}
 
-      <div class="fade">
-        <main>
-          {{ block "main" . }}{{ end }}
-        </main>
-        <div class="floor" aria-hidden="true"></div>
+        <div class="fade">
+          <main>{{ block "main" . }}{{ end }}</main>
+          <div class="floor" aria-hidden="true"></div>
+        </div>
+
+        {{ partial "footer.html" . }}
       </div>
 
-      {{ partial "footer.html" . }}
+      <canvas class="fall" aria-hidden="true"></canvas>
     </div>
 
-    <canvas class="fall" aria-hidden="true"></canvas>
-  </div>
-
-  {{- if ne $zone "cards" }}
-  <script src="/js/meadow.js" defer></script>
-  {{- end }}
-  <script src="/js/site.js" defer></script>
-</body>
+    <!-- Single bundled script (mode-specific code guarded internally) -->
+    <script src="/js/index.js" defer></script>
+  </body>
 </html>

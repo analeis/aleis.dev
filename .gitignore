@@ -3,6 +3,9 @@
 /resources/
 .hugo_build.lock
 
+# Compiled TypeScript (built from static/js/*.ts by `bun run ts`)
+/static/js/*.js
+
 # Editor / OS noise
 .DS_Store
 .vscode/
@@ -14,3 +17,6 @@ __pycache__/
 # Secrets
 .env
 .env.local
+
+# TypeScript
+*.tsbuildinfo

@@ -10,27 +10,27 @@ disableKinds = ["taxonomy", "term"]
 
 # The homepage and the post feed need RSS. Sections only need HTML.
 [outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML"]
+home = ["HTML", "RSS"]
+section = ["HTML"]
 
 # Serve the feed at /feed.xml instead of /index.xml.
 [outputFormats.RSS]
-  baseName = "feed"
-  mediaType = "application/rss+xml"
-  rel = "alternate"
+baseName = "feed"
+mediaType = "application/rss+xml"
+rel = "alternate"
 
 [params]
-  description = "The personal site of aleis: writing, projects and a meadow of colours."
-  greeting = "Hi. This is aleis. Stay a while."
-  email = "hello@aleis.dev"
-  github = "https://github.com/analeis"
+description = "The personal site of aleis: writing, projects and a meadow of colours."
+greeting = "Hi. This is aleis. Stay a while."
+email = "justanaleis@gmail.com"
+github = "https://github.com/analeis"
 
 # Page bodies contain hand-written HTML (the palette grid, the badge board),
 # so let Goldmark pass it through untouched.
 [markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-  # Pastel syntax colours that sit next to the Meadow palette.
-  [markup.highlight]
-    style = "rose-pine"
-    noClasses = true
+[markup.goldmark.renderer]
+unsafe = true
+# Pastel syntax colours that sit next to the Meadow palette.
+[markup.highlight]
+style = "rose-pine"
+noClasses = true

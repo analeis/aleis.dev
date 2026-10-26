@@ -1,0 +1,4 @@
+# Hugo templates contain Go template syntax that bun fmt cannot parse
+layouts/**/*.html
+content/**/*.md
+archetypes/**/*.md

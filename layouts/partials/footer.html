@@ -1,9 +1,15 @@
-{{- $zone := .Params.zone | default "meadow" -}}
+{{- $mode := .Params.mode | default "meadow" -}}
 <footer class="foot">
   <a href="{{ site.Params.github }}" target="_blank" rel="noopener">github</a>
   <a href="mailto:{{ site.Params.email }}">email</a>
   <a href="/feed.xml">rss</a>
-  {{- if ne $zone "cards" }}
-  <button type="button" class="theme" hidden>light mode</button>
-  {{- end }}
+  <button
+    type="button"
+    class="theme"
+    data-mode-toggle
+    data-meadow="switch to Meadow"
+    data-dacian="switch to Dacian"
+    hidden
+    aria-label="Switch theme"
+  ></button>
 </footer>

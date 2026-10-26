@@ -1,0 +1,104 @@
+/* Meadow Mode - Dark, pixel font, canvas meadow */
+/* Scoped to [data-mode="meadow"] */
+
+[data-mode="meadow"] {
+  color-scheme: dark;
+  --base: #1f1a24;
+  --text: #ebe7f0;
+  --head: #f1edf5;
+  --body: #e3dde9;
+  --subtle: #b9b0c6;
+  --muted: #958aa3;
+  --accent: #c1b0e7;
+  --sage: #a4bba9;
+  --line: #3a3245;
+  --code: #2a2431;
+  --pre: #17131b;
+}
+
+/* Meadow-specific font */
+[data-mode="meadow"] body {
+  font-family: "aleis dot", monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Meadow canvas - positioned behind content */
+[data-mode="meadow"] .meadow,
+[data-mode="meadow"] .fall {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  display: block;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+[data-mode="meadow"] .wordmark canvas {
+  display: block;
+}
+
+[data-mode="meadow"] .wordmark-text {
+  display: none;
+}
+
+/* Meadow palette page - show dark variant */
+[data-mode="meadow"] .v-dark {
+  display: contents;
+}
+[data-mode="meadow"] .v-light {
+  display: none;
+}
+
+/* Meadow projects list (not cards) */
+[data-mode="meadow"] .grid {
+  display: none;
+}
+
+[data-mode="meadow"] .proj-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 44px;
+}
+
+[data-mode="meadow"] .proj {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+[data-mode="meadow"] .proj:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+[data-mode="meadow"] .proj-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+}
+
+[data-mode="meadow"] .proj-head .lang {
+  color: var(--muted);
+}
+
+[data-mode="meadow"] .proj-head .row-title {
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--head);
+}
+
+[data-mode="meadow"] .proj .row-desc {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--subtle);
+  text-wrap: pretty;
+}
+
+/* Meadow easter egg: petal cursor on meadow canvas */
+[data-mode="meadow"] .root:has(.meadow:hover) {
+  cursor: crosshair;
+}

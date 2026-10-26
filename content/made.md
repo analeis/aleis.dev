@@ -6,7 +6,7 @@ layout: page
 <p class="lede">Some of the things I've built and maintain. Click one to go to the source.</p>
 <div class="proj-list">
   <a class="proj" href="https://github.com/analeis/aleis" target="_blank" rel="noopener">
-    <span class="proj-head"><span class="row-title">aleis</span><span class="lang">hugo · html · css · js</span></span>
+    <span class="proj-head"><span class="row-title">aleis</span><span class="lang">hugo · html · css · ts</span></span>
     <span class="row-desc">The site you're reading, built with Hugo and a hand-written theme.</span>
   </a>
   <a class="proj" href="/meadow/">
