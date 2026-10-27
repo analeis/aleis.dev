@@ -10,8 +10,6 @@
     return document.documentElement.getAttribute("data-mode") === "meadow";
   }
 
-  if (!isMeadowMode()) return;
-
   const root = document.querySelector(".root") as HTMLElement;
   if (!root) return;
 
@@ -247,6 +245,7 @@
     nextGlance = 0;
   let animationId: number | null = null;
   let isRunning = false;
+  const pendingTimers = new Set<number>();
 
   applyMeadowPalette();
 
@@ -1021,8 +1020,9 @@
         .sort(() => Math.random() - 0.5)
         .slice(0, Math.max(0, left.length - keep))
         .forEach((n) => {
-          setTimeout(
+          const timer = window.setTimeout(
             () => {
+              pendingTimers.delete(timer);
               const g = geo(f);
               if (!g || f.pg[n] || !f.F) return;
               const F = f.F,
@@ -1038,6 +1038,7 @@
             },
             80 + Math.random() * 1600,
           );
+          pendingTimers.add(timer);
         });
     });
   }
@@ -1086,6 +1087,9 @@
       if (cv && cv._c) cv._c.clearRect(0, 0, cv.width, cv.height);
     });
     // Reset state
+    pendingTimers.forEach((timer) => window.clearTimeout(timer));
+    pendingTimers.clear();
+    root.style.cursor = "";
     falls = [];
     meadow = [];
     mKey = "";

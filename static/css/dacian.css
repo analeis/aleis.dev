@@ -70,8 +70,21 @@
   display: none;
 }
 
+[data-mode="dacian"] .wordmark-meadow,
+[data-mode="dacian"] .wordmark button {
+  display: none;
+}
+
+[data-mode="dacian"] .wordmark-dacian {
+  display: block;
+}
+
 [data-mode="dacian"] .wordmark-text {
   display: flex;
+}
+
+[data-mode="dacian"] .wrap {
+  background: var(--base);
 }
 
 /* Dacian wordmark text */
@@ -279,13 +292,13 @@
 
 /* Dacian responsive */
 @media (max-width: 1200px) {
-  [data-mode="dacian"] html {
+  html[data-mode="dacian"] {
     font-size: 20px;
   }
 }
 
 @media (max-width: 900px) {
-  [data-mode="dacian"] html {
+  html[data-mode="dacian"] {
     font-size: 20px;
   }
   [data-mode="dacian"] .wrapper {

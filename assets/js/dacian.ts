@@ -67,6 +67,8 @@
     });
   }
 
+  let initialized = false;
+
   function initCardKeyboardNav(): void {
     const cards = document.querySelectorAll<HTMLElement>(
       ".grid-item a, .subsection-grid-item a, .card a",
@@ -82,6 +84,8 @@
   }
 
   function init(): void {
+    if (initialized) return;
+    initialized = true;
     initCardEffects();
     initGridStagger();
     initSmoothScroll();

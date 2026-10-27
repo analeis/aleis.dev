@@ -29,13 +29,21 @@
       if (stored === "meadow" || stored === "dacian") return stored;
     } catch {}
 
-    // 3. Fall back to system preference
+    // 3. Keep the mode selected by the inline bootstrap script/page.
+    const bootMode = document.documentElement.getAttribute("data-mode");
+    if (bootMode === "meadow" || bootMode === "dacian") return bootMode;
+
+    // 4. Fall back to system preference only if no mode was available.
     return getSystemMode();
   }
 
   function setMode(mode: Mode, { updateURL = true } = {}) {
     const root = document.documentElement;
     root.setAttribute("data-mode", mode);
+    root.style.colorScheme = mode === "dacian" ? "light" : "dark";
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", mode === "dacian" ? "#104088" : "#c1b0e7");
 
     try {
       localStorage.setItem(MODE_KEY, mode);
@@ -92,7 +100,10 @@
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemChange = () => {
       // Only auto-switch if user hasn't explicitly chosen
-      const hasExplicitChoice = localStorage.getItem(MODE_KEY) !== null;
+      let hasExplicitChoice = false;
+      try {
+        hasExplicitChoice = localStorage.getItem(MODE_KEY) !== null;
+      } catch {}
       if (!hasExplicitChoice) {
         setMode(getSystemMode());
       }

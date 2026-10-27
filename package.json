@@ -4,8 +4,8 @@
   "scripts": {
     "ts": "bun build assets/js/index.ts --outfile static/js/index.js",
     "build": "bun build assets/js/index.ts --minify --outfile static/js/index.js && hugo --minify --gc",
-    "check": "bun check assets/js/ && bun fmt --check . && hugo --minify --gc --panicOnWarning",
-    "dev": "trap 'kill 0' EXIT; bun build assets/js/index.ts --watch --outfile static/js/index.js & hugo server --disableFastRender --navigateToChanged",
+    "check": "bun check --no-script assets/js/ && bun fmt --check . && hugo --minify --gc --panicOnWarning",
+    "dev": "bun build assets/js/index.ts --outfile static/js/index.js && (trap 'kill 0' EXIT; bun build assets/js/index.ts --watch --outfile static/js/index.js & hugo server --disableFastRender --navigateToChanged)",
     "new": "hugo new content/writing/",
     "clean": "rm -rf public resources .hugo_build.lock static/js/*.js"
   }

@@ -32,10 +32,19 @@
   display: block;
   image-rendering: pixelated;
   pointer-events: none;
+  background: var(--base);
 }
 
 [data-mode="meadow"] .wordmark canvas {
   display: block;
+}
+
+[data-mode="meadow"] .wordmark-meadow {
+  display: block;
+}
+
+[data-mode="meadow"] .wordmark-dacian {
+  display: none;
 }
 
 [data-mode="meadow"] .wordmark-text {

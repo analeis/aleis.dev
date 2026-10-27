@@ -49,6 +49,10 @@ body {
   background: var(--base);
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
   color: var(--text);
   font-size: 16px;
@@ -62,6 +66,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--base);
 }
 
 /* Meadow canvas */
@@ -80,7 +85,7 @@ body {
   position: relative;
   z-index: 1;
   flex: 1;
-  background: #1f1a24;
+  background: transparent;
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;

@@ -1,13 +1,9 @@
-{{- $mode := .Params.mode | default "meadow" -}}
 {{- $p := .RelPermalink -}}
 <header class="top">
   <div class="wordmark">
-    {{- if eq $mode "meadow" }}
-    <a href="/" aria-label="aleis, home"><canvas width="72" height="18"></canvas></a>
+    <a class="wordmark-meadow" href="/" aria-label="aleis, home"><canvas width="72" height="18"></canvas></a>
+    <a class="wordmark-dacian" href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
     <button type="button" aria-label="pick a petal"></button>
-    {{- else if eq $mode "dacian" }}
-    <a href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
-    {{- end }}
   </div>
   <nav class="nav" aria-label="Main">
     <a class="{{ if hasPrefix $p "/writing/" }}active{{ end }}" href="/writing/">writing</a>

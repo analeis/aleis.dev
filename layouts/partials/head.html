@@ -3,17 +3,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Description | default site.Params.description }}">
+<meta name="theme-color" content="{{ if eq $mode "meadow" }}#c1b0e7{{ else }}#104088{{ end }}">
 
 <!-- Inline mode initialization (prevents flash) -->
 <script>
 (function(){
   var e=document.documentElement;
+  var pageMode=e.getAttribute('data-mode') || 'meadow';
   try{
-    var t=localStorage.getItem('site-mode');
     var urlMode=new URLSearchParams(window.location.search).get('mode');
-    var mode=t || urlMode || 'meadow';
-    if(mode==='meadow'||mode==='dacian') e.setAttribute('data-mode',mode);
-  }catch(n){}
+    var stored=localStorage.getItem('site-mode');
+    var mode=urlMode==='meadow'||urlMode==='dacian' ? urlMode :
+      stored==='meadow'||stored==='dacian' ? stored : pageMode;
+    e.setAttribute('data-mode',mode);
+    e.style.colorScheme=mode==='dacian' ? 'light' : 'dark';
+    var theme=e.querySelector('meta[name="theme-color"]');
+    if(theme) theme.setAttribute('content',mode==='dacian' ? '#104088' : '#c1b0e7');
+  }catch(n){
+    e.setAttribute('data-mode',pageMode);
+  }
 })();
 </script>
 
@@ -21,8 +29,6 @@
 <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/meadow.css">
 <link rel="stylesheet" href="/css/dacian.css">
-<meta name="theme-color" content="{{ if eq $mode "meadow" }}#c1b0e7{{ else }}#104088{{ end }}">
-
 <!-- Font preloads -->
 <link rel="preload" href="/assets/aleis-dot.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://fonts.gstatic.com/s/googlesans/v28/4UaGrENHsxJlGDuGo1OIlL3Owp5eKQ.woff2" as="font" type="font/woff2" crossorigin>

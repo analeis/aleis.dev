@@ -15,10 +15,10 @@ Switching modes swaps the entire visual identity — fonts, layout, colors, inte
 ## Commands
 
 ```bash
-bun dev              # compile TS, then preview at http://localhost:1313
-bun run build            # compile TS (minified) and write site to ./public
-bun check            # type-check TS + build with warnings as errors
-bun fmt              # format code with prettier
+bun dev              # build the bundle, watch TS, and preview Hugo
+bun run build        # compile TS (minified) and write site to ./public
+bun check            # type-check, format-check, and build with warnings as errors
+bun fmt              # format supported source files with Bun
 bun new my-post-title # add content/writing/my-post-title.md
 bun clean            # remove build output and compiled JS
 ```
@@ -85,9 +85,14 @@ The wordmark is pixel art built in `assets/js/meadow.ts` from the `G` glyph map.
 ## Mode System
 
 - Mode is stored in `localStorage` (`site-mode`) and URL (`?mode=meadow|dacian`)
-- Default respects `prefers-color-scheme` (dark → meadow, light → dacian)
+- The page mode is the fallback; system preference is only used if no mode exists
 - Toggle button in nav and footer switches modes with smooth transition
-- Each mode loads only its own JS bundle for performance
+- One bundle contains shared code and mode-specific modules with lifecycle guards
+
+`bunfig.toml` contains Bun formatter preferences. Hugo templates and Markdown
+with Go-template syntax are excluded through `.prettierignore`, which is the
+ignore file Bun's formatter supports; formatter exclusions cannot currently be
+declared inside `[fmt]` in `bunfig.toml`.
 
 ## Upstream Attribution
 

@@ -23,11 +23,8 @@ jobs:
           hugo-version: "0.168.0"
           extended: true
 
-      - name: Type-check (bun)
-        run: bun check
-
-      - name: Format check (bun)
-        run: bun fmt --check .
+      - name: Check (bun and Hugo)
+        run: bun run check
 
       - name: Build
         run: bun run build
