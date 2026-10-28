@@ -4,8 +4,10 @@
 {{- range $posts }}{{ range .Params.tags }}{{ $allTags = $allTags | append . }}{{ end }}{{ end }}
 {{- $allTags = sort (uniq $allTags) }}
 <div class="page">
-  <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  <div class="page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </div>
 
   <div class="filter">
     <button class="active" data-tag="">all</button>
@@ -16,7 +18,7 @@
   </div>
 
   {{- range $posts }}
-  <a class="post-row" href="{{ .RelPermalink }}" data-tags="{{ delimit .Params.tags " " }}">
+  <a class="post-row grow" href="{{ .RelPermalink }}" data-tags="{{ delimit .Params.tags " " }}">
     <span class="meta">
       <span>{{ .Date.Format "Jan 2, 2006" }}</span>
       <span>{{ .ReadingTime }} min read</span>

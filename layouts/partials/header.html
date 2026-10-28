@@ -1,5 +1,5 @@
 {{- $p := .RelPermalink -}}
-<header class="top">
+<header class="top meadow-header" aria-label="Main navigation">
   <div class="wordmark">
     <a class="wordmark-meadow" href="/" aria-label="aleis, home"><canvas width="72" height="18"></canvas></a>
     <a class="wordmark-dacian" href="/" aria-label="aleis, home"><span class="wordmark-text">aleis</span></a>
@@ -9,12 +9,7 @@
     <a class="{{ if hasPrefix $p "/writing/" }}active{{ end }}" href="/writing/">writing</a>
     <a class="{{ if hasPrefix $p "/projects/" }}active{{ end }}" href="/projects/">projects</a>
     <a class="{{ if hasPrefix $p "/software/" }}active{{ end }}" href="/software/">software</a>
-    <a class="{{ if hasPrefix $p "/meadow/" }}active{{ end }}" href="/meadow/">meadow</a>
     <a class="{{ if hasPrefix $p "/friends/" }}active{{ end }}" href="/friends/">friends</a>
     <a class="{{ if hasPrefix $p "/about/" }}active{{ end }}" href="/about/">about</a>
-    <!-- Mode toggle -->
-    <button type="button" class="theme" data-mode-toggle
-      data-meadow="switch to Meadow" data-dacian="switch to Dacian"
-      hidden aria-label="Switch theme"></button>
   </nav>
 </header>

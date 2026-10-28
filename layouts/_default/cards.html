@@ -1,14 +1,17 @@
 {{ define "main" }} {{- $deck := false }} {{- range where hugo.Data.cards "name"
 .Params.deck }}{{ $deck = . }}{{ end }}
 <div class="page">
-  <h1>{{ .Title }}</h1>
-  {{ with .Description }}
-  <p class="lede">{{ . }}</p>
-  {{ end }} {{- with $deck }}
+  <div class="page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="lede">{{ . }}</p>
+    {{ end }}
+  </div>
+  {{- with $deck }}
   <!-- Dacian mode: card grid -->
   <div class="grid">
     {{- range .cards }}
-    <a class="grid-item grow" href="{{ .url }}">
+    <a class="tile grow" href="{{ .url }}">
       <h2>{{ .name }}</h2>
       <p>{{ .description }}</p>
       <span class="triangle-dark" aria-hidden="true">◢</span>
@@ -16,7 +19,7 @@
     {{- end }}
   </div>
   <!-- Meadow mode: list -->
-  <div class="proj-list">
+  <div class="proj-list deck-list">
     {{- range .cards }}
     <a class="proj" href="{{ .url }}" target="_blank" rel="noopener">
       <span class="proj-head">

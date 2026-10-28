@@ -1,5 +1,5 @@
 /**
- * Mode Switcher - handles switching between Meadow and Dacian modes
+ * Mode Picker - handles switching between Meadow and Dacian modes
  * Persists choice in localStorage and URL (?mode=meadow|dacian)
  */
 (function () {
@@ -55,8 +55,8 @@
       window.history.replaceState({}, "", url);
     }
 
-    // Update all toggle buttons
-    updateToggleButtons(mode);
+    // Keep every native radio group synchronized.
+    updateModeInputs(mode);
 
     // Notify other scripts
     try {
@@ -64,37 +64,32 @@
     } catch {}
   }
 
-  function updateToggleButtons(currentMode: Mode) {
-    const buttons = document.querySelectorAll<HTMLButtonElement>(
-      "button[data-mode-toggle], button.theme",
-    );
-    const nextMode: Mode = currentMode === "meadow" ? "dacian" : "meadow";
+  function updateModeInputs(currentMode: Mode) {
+    document
+      .querySelectorAll<HTMLInputElement>('input[name="site-mode"]')
+      .forEach((input) => {
+        input.checked = input.value === currentMode;
+      });
+  }
 
-    buttons.forEach((btn) => {
-      const label = btn.getAttribute(`data-${nextMode}`) || `${nextMode} mode`;
-      btn.textContent = label;
-      btn.hidden = false;
-      btn.setAttribute("aria-pressed", String(currentMode === nextMode));
-    });
+  function isMode(value: string | null): value is Mode {
+    return value === "meadow" || value === "dacian";
+  }
+
+  function bindModeInputs() {
+    document
+      .querySelectorAll<HTMLInputElement>('input[name="site-mode"]')
+      .forEach((input) => {
+        input.addEventListener("change", () => {
+          if (isMode(input.value)) setMode(input.value);
+        });
+      });
   }
 
   function init() {
     const mode = getInitialMode();
     setMode(mode, { updateURL: false }); // Don't push to history on initial load
-
-    // Toggle button clicks
-    document.addEventListener("click", (e: MouseEvent) => {
-      const btn = (e.target as Element | null)?.closest?.(
-        "button[data-mode-toggle], button.theme",
-      ) as HTMLButtonElement | null;
-      if (!btn) return;
-
-      const currentMode = document.documentElement.getAttribute(
-        "data-mode",
-      ) as Mode;
-      const nextMode: Mode = currentMode === "meadow" ? "dacian" : "meadow";
-      setMode(nextMode);
-    });
+    bindModeInputs();
 
     // System preference change
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

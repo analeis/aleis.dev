@@ -9,6 +9,7 @@
 <script>
 (function(){
   var e=document.documentElement;
+  e.classList.add('js');
   var pageMode=e.getAttribute('data-mode') || 'meadow';
   try{
     var urlMode=new URLSearchParams(window.location.search).get('mode');

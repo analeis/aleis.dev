@@ -128,7 +128,6 @@
     nav: root.querySelector(".nav")!,
     homeText: root.querySelector(".home h1")!,
     latest: root.querySelector(".latest")!,
-    homeZones: root.querySelector(".home-zones")!,
     foot: root.querySelector(".foot")!,
     page: root.querySelector(".page, .post")!,
   };
@@ -899,7 +898,7 @@
       Math.ceil((b.right - rr.left) / 5),
       Math.ceil((b.bottom - rr.top) / 5),
     ];
-    const rects = [el.wmBox, el.nav, el.homeZones]
+    const rects = [el.wmBox, el.nav]
       .filter(Boolean)
       .map((e) => e.getBoundingClientRect());
     [el.homeText, el.latest].filter(Boolean).forEach((e) => {

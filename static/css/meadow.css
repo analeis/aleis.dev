@@ -1,6 +1,10 @@
 /* Meadow Mode - Dark, pixel font, canvas meadow */
 /* Scoped to [data-mode="meadow"] */
 
+[data-mode="meadow"] .meadow-header {
+  display: flex;
+}
+
 [data-mode="meadow"] {
   color-scheme: dark;
   --base: #1f1a24;
@@ -32,11 +36,31 @@
   display: block;
   image-rendering: pixelated;
   pointer-events: none;
+  visibility: visible;
+}
+
+[data-mode="meadow"] .meadow {
   background: var(--base);
+}
+
+[data-mode="meadow"] .nav a.active {
+  color: var(--accent);
+}
+
+[data-mode="meadow"] .floor {
+  height: 240px;
+  flex: none;
 }
 
 [data-mode="meadow"] .wordmark canvas {
   display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+[data-mode="meadow"] .wordmark button {
+  left: 23.6111%;
 }
 
 [data-mode="meadow"] .wordmark-meadow {

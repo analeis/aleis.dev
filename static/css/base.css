@@ -63,19 +63,22 @@ body {
 /* Shared root layout */
 .root {
   position: relative;
+  overflow: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--base);
 }
 
-/* Meadow canvas */
+/* Meadow canvas - covers root immediately so the dark ground is visible
+   before the JS tick resizes the drawing buffer. */
 .meadow,
 .fall {
   position: absolute;
   z-index: 0;
-  left: 0;
-  top: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
   image-rendering: pixelated;
   pointer-events: none;
@@ -104,9 +107,15 @@ body {
 
 .wordmark {
   position: relative;
-  width: 360px;
-  height: 90px;
+  width: 288px;
+  height: 72px;
   flex: none;
+}
+
+/* Page headers render as plain blocks in Meadow; Dacian turns them into
+   board tiles. display:contents keeps the Meadow layout byte-identical. */
+.page-head {
+  display: contents;
 }
 .wordmark a {
   display: block;
@@ -119,6 +128,55 @@ body {
   width: 22.2222%;
   height: 88.8889%;
   cursor: pointer;
+}
+
+.dacian-header,
+.dacian-directory {
+  display: none;
+}
+
+.mode-picker {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.mode-picker legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mode-picker label {
+  cursor: pointer;
+}
+
+.mode-picker input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mode-picker label span {
+  color: var(--muted);
+}
+
+.mode-picker input:checked + span {
+  color: var(--accent);
+}
+
+.mode-picker input:focus-visible + span {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .nav {
@@ -139,25 +197,6 @@ main {
   display: flex;
   flex-direction: column;
   padding-bottom: 48px;
-}
-
-button.theme,
-button[data-mode-toggle] {
-  all: unset;
-  cursor: pointer;
-}
-button.theme[hidden],
-button[data-mode-toggle][hidden] {
-  display: none;
-}
-button.theme:hover,
-button[data-mode-toggle]:hover {
-  color: var(--accent);
-}
-button.theme:focus-visible,
-button[data-mode-toggle]:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: 4px;
 }
 
 .foot {
@@ -199,46 +238,6 @@ button[data-mode-toggle]:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
-}
-
-/* Homepage zone cards */
-.home-zones {
-  margin-top: clamp(40px, 8vh, 72px);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: 16px;
-  width: 100%;
-  max-width: 760px;
-}
-.zone-card {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 22px 24px;
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--accent) 9%, var(--base));
-  transition:
-    border-color 120ms ease-out,
-    background-color 120ms ease-out;
-}
-.zone-card:hover {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 16%, var(--base));
-}
-.zone-label {
-  color: var(--muted);
-  font-size: 13px;
-}
-.zone-title {
-  font-size: 28px;
-  line-height: 1.1;
-  color: var(--head);
-}
-.zone-desc {
-  color: var(--subtle);
-  font-size: 15px;
-  line-height: 1.4;
-  text-wrap: pretty;
 }
 
 /* Generic page */
@@ -642,19 +641,14 @@ button[data-mode-toggle]:focus-visible {
   outline-offset: 4px;
 }
 
-/* Content is visible by default; JS enhances with fade-in transition */
-html.js .fade,
-html.js .meadow,
-html.js .fall {
-  opacity: 1;
-}
+/* Content and canvases are visible immediately; JS drives page-transition fades. */
 
 @media (max-width: 420px) {
   .wordmark {
-    width: 288px;
-    height: 72px;
+    width: 216px;
+    height: 54px;
   }
   .wordmark-text {
-    font-size: 44px;
+    font-size: 33px;
   }
 }

@@ -11,11 +11,13 @@
     <div class="root">
       <canvas class="meadow" aria-hidden="true"></canvas>
 
-      <div class="wrap">
+      <div class="wrap shell-{{ $mode }}">
         {{ partial "header.html" . }}
+        {{ partial "dacian-header.html" . }}
 
         <div class="fade">
           <main>{{ block "main" . }}{{ end }}</main>
+          {{ if .IsHome }}{{ partial "dacian-directory.html" . }}{{ end }}
           <div class="floor" aria-hidden="true"></div>
         </div>
 

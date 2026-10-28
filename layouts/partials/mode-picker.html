@@ -1,0 +1,12 @@
+{{- $mode := .Params.mode | default "meadow" -}}
+<fieldset class="mode-picker" aria-label="Choose visual mode">
+  <legend>mode</legend>
+  <label>
+    <input type="radio" name="site-mode" value="meadow"{{ if eq $mode "meadow" }} checked{{ end }}>
+    <span>meadow</span>
+  </label>
+  <label>
+    <input type="radio" name="site-mode" value="dacian"{{ if eq $mode "dacian" }} checked{{ end }}>
+    <span>dacian</span>
+  </label>
+</fieldset>

@@ -1,9 +1,9 @@
 ---
 title: Friends
+description: Grab my 88x31 if you want, and send me yours.
 layout: page
 ---
 
-<p class="lede">Grab my 88x31 if you want, and send me yours.</p>
 <div class="badge-own">
   <img src="/88x31.gif" width="88" height="31" alt="aleis">
   <div class="badge-info">

@@ -40,6 +40,7 @@ content/
   projects.md            card grid (dacian) / list (meadow), deck: projects
   software.md            card grid (dacian) / list (meadow), deck: software
 data/cards.json          tiles for projects and software
+data/navigation.json     shared destinations rendered per mode
 package.json             bun scripts (replaces justfile)
 tsconfig.json            TypeScript config
 layouts/
@@ -50,7 +51,10 @@ layouts/
   _default/meadow.html   palette page
   writing/page.html      post layout
   index.html             homepage
-  partials/              head, header, footer
+  partials/              head, header, footer and mode shells
+  dacian-header.html     Dacian title-card shell
+  dacian-directory.html  Dacian card-based navigation
+  mode-picker.html       shared Meadow/Dacian radio group
   robots.txt             robots file with sitemap link
 static/
   assets/                images, favicons, badges, posters and the pixel font
@@ -86,7 +90,8 @@ The wordmark is pixel art built in `assets/js/meadow.ts` from the `G` glyph map.
 
 - Mode is stored in `localStorage` (`site-mode`) and URL (`?mode=meadow|dacian`)
 - The page mode is the fallback; system preference is only used if no mode exists
-- Toggle button in nav and footer switches modes with smooth transition
+- Meadow keeps text navigation and a footer mode picker; Dacian uses a title card,
+  card-based directory, and a premium card-styled mode picker
 - One bundle contains shared code and mode-specific modules with lifecycle guards
 
 `bunfig.toml` contains Bun formatter preferences. Hugo templates and Markdown

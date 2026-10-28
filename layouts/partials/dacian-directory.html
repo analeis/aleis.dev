@@ -1,0 +1,23 @@
+{{- $posts := where site.RegularPages.ByDate.Reverse "Section" "writing" }}
+<nav class="dacian-directory" aria-label="Site directory">
+  <div class="dacian-directory-grid">
+    {{- range hugo.Data.navigation }}
+      {{- $item := . -}}
+      {{- with .dacian }}
+      <a class="tile grow span-{{ $item.dacianSpan | default 6 }}" href="{{ $item.url }}"{{ if hasPrefix $.RelPermalink $item.url }} aria-current="page"{{ end }}>
+        <h2>{{ . }}</h2>
+        <p>{{ $item.description }}</p>
+        <span class="triangle-dark" aria-hidden="true">◢</span>
+      </a>
+      {{- end }}
+    {{- end }}
+    {{- with $posts }}{{ with index . 0 }}
+      <a class="tile grow span-6" href="{{ .RelPermalink }}">
+        <span class="tile-label">latest</span>
+        <h2>{{ .Title }}</h2>
+        <span class="tile-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+        <span class="triangle-dark" aria-hidden="true">◢</span>
+      </a>
+    {{- end }}{{ end }}
+  </div>
+</nav>

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "writing",
+    "url": "/writing/",
+    "meadow": "writing",
+    "dacian": "writing",
+    "dacianSpan": 6,
+    "description": "notes on software and whatever else i've been thinking about"
+  },
+  {
+    "id": "made",
+    "url": "/made/",
+    "meadow": "made",
+    "description": "things i've built and maintain"
+  },
+  {
+    "id": "projects",
+    "url": "/projects/",
+    "dacian": "projects",
+    "dacianSpan": 6,
+    "description": "open source learning experiences"
+  },
+  {
+    "id": "software",
+    "url": "/software/",
+    "meadow": "software",
+    "dacian": "software",
+    "dacianSpan": 6,
+    "description": "software i like to self-host"
+  },
+  {
+    "id": "friends",
+    "url": "/friends/",
+    "meadow": "friends",
+    "dacian": "friends",
+    "dacianSpan": 6,
+    "description": "people and places worth visiting"
+  },
+  {
+    "id": "about",
+    "url": "/about/",
+    "meadow": "about",
+    "dacian": "about",
+    "dacianSpan": 6,
+    "description": "a little more about aleis"
+  }
+]

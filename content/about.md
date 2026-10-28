@@ -1,9 +1,9 @@
 ---
 title: About
+description: I make websites and write down what I learn. Most of it ends up here.
 layout: page
 ---
 
-<p class="lede about-lede">I make websites and write down what I learn. Most of it ends up here.</p>
 <div class="cols">
   <div class="col">
     <span class="col-label">now</span>

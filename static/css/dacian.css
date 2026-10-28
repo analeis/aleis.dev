@@ -1,8 +1,27 @@
-/* Dacian Mode - Light, Google Sans, CSS Grid cards */
+/* Dacian Mode - light "board" identity: flat colour tiles on a pale page */
 /* Scoped to [data-mode="dacian"] */
+/*
+  Design system (upstream dacian.co palette, restructured):
+  - The page is --color-1. Everything with weight is a flat --color-2 tile:
+    no borders, no shadows, no radii. Depth comes only from the fill.
+  - Interactive tiles invert on hover/focus: fill --color-4, text --color-1,
+    a 1.02 scale (upstream's .grow behaviour).
+  - The board is a 12-column grid; tiles span 6 (two calm columns) or 12
+    (page masthead, filter bar, footer band).
+  - The masthead is a sticky --color-1 band: the title sits on the page
+    itself (negative space) beside the contact tile.
+*/
 
 [data-mode="dacian"] {
   color-scheme: light;
+  font-size: 24px;
+  /* upstream palette */
+  --color-1: #f2f6ff; /* page */
+  --color-2: #d9dfff; /* tile fill */
+  --color-3: #022867; /* body text */
+  --color-4: #104088; /* accent + active fill */
+  --color-5: #011626; /* headings */
+  /* base.css token aliases */
   --base: #f2f6ff;
   --text: #022867;
   --head: #011626;
@@ -14,11 +33,6 @@
   --line: #c9d4f2;
   --code: #e4ebff;
   --pre: #dce6ff;
-  --color-1: #f2f6ff;
-  --color-2: #d9dfff;
-  --color-3: #022867;
-  --color-4: #104088;
-  --color-5: #011626;
 }
 
 /* Dacian-specific fonts */
@@ -36,6 +50,39 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Upstream parity: no underlines; text is not selectable by default for a
+   cleaner feel. .selectable opts in (and switches those bits to mono). */
+[data-mode="dacian"] a {
+  text-decoration: none;
+}
+
+[data-mode="dacian"] * {
+  user-select: none;
+}
+
+[data-mode="dacian"] .selectable,
+[data-mode="dacian"] .selectable * {
+  user-select: text;
+}
+
+/* Hide the meadow header/nav, canvas and pixel wordmark in Dacian */
+[data-mode="dacian"] .meadow-header,
+[data-mode="dacian"] .wordmark {
+  display: none;
+}
+
+[data-mode="dacian"] .meadow,
+[data-mode="dacian"] .fall {
+  display: none !important;
+}
+
+/* Base clips .root to contain the meadow canvas; in Dacian the canvas is
+   hidden, so let the page scroll naturally and the masthead stick. */
+[data-mode="dacian"] .root {
+  overflow: visible;
+}
+
+/* ---- Typography primitives (upstream-exact sizes) ---- */
 [data-mode="dacian"] h1,
 [data-mode="dacian"] h2,
 [data-mode="dacian"] p,
@@ -50,54 +97,152 @@
     "Helvetica Neue",
     Arial,
     sans-serif;
+  font-size: 1rem;
+  color: var(--color-3);
 }
 
 [data-mode="dacian"] .data-value,
 [data-mode="dacian"] .email,
+[data-mode="dacian"] .dacian-contact-email,
 [data-mode="dacian"] code {
   font-family:
     "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
     monospace;
+  font-size: 0.85rem;
 }
 
-/* Hide meadow canvas in dacian mode */
-[data-mode="dacian"] .meadow,
-[data-mode="dacian"] .fall {
-  display: none !important;
+/* Animated name typography (upstream .grow-text) */
+[data-mode="dacian"] .grow-text {
+  font-weight: 600;
+  transition: 200ms ease-in;
 }
 
-[data-mode="dacian"] .wordmark canvas {
-  display: none;
+[data-mode="dacian"] .grow-text:hover {
+  transition: 200ms ease-out;
+  font-variant: small-caps;
+  letter-spacing: 0.1rem;
 }
 
-[data-mode="dacian"] .wordmark-meadow,
-[data-mode="dacian"] .wordmark button {
-  display: none;
-}
-
-[data-mode="dacian"] .wordmark-dacian {
-  display: block;
-}
-
-[data-mode="dacian"] .wordmark-text {
+/* ---- Shell: fit the viewport, centre short content, scroll tall content ---- */
+[data-mode="dacian"] .shell-dacian {
+  width: min(900px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
 
 [data-mode="dacian"] .wrap {
   background: var(--base);
 }
 
-/* Dacian wordmark text */
-[data-mode="dacian"] .wordmark {
-  width: auto !important;
-  min-width: 180px;
-  height: 72px;
+[data-mode="dacian"] .fade,
+[data-mode="dacian"] main {
+  flex: none;
+  padding-bottom: 0;
 }
 
-[data-mode="dacian"] .wordmark-text {
+[data-mode="dacian"] .fade {
+  gap: 0.5rem;
+}
+
+/* ---- Sticky masthead (title on the page + contact tile) ---- */
+[data-mode="dacian"] .dacian-header {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-1);
+  /* Bridge the shell gap so scrolled tiles never peek under the band. */
+  padding-bottom: 0.75rem;
+  margin-bottom: -0.5rem;
+}
+
+[data-mode="dacian"] .dacian-title-card {
+  display: block;
+  grid-column: span 6;
+  padding: 1rem;
+}
+
+[data-mode="dacian"] .dacian-title-card h1 {
+  color: var(--color-5);
+  font-size: 1.1rem;
+  font-variant: small-caps;
+}
+
+[data-mode="dacian"] .dacian-title-card p {
+  margin-top: 0.25rem;
+  line-height: 1.3;
+}
+
+[data-mode="dacian"] .dacian-contact-email {
+  margin-top: auto;
+  color: var(--color-4);
+}
+
+/* ---- The tile primitive ---- */
+[data-mode="dacian"] .tile,
+[data-mode="dacian"] .dacian-header > .tile,
+[data-mode="dacian"] .page > .page-head,
+[data-mode="dacian"] .page > .filter,
+[data-mode="dacian"] .page > .post-row,
+[data-mode="dacian"] .page > .badge-own,
+[data-mode="dacian"] .page > .badges,
+[data-mode="dacian"] .page > .cols > .col,
+[data-mode="dacian"] .page > .proj-list > .proj {
+  grid-column: span 6;
   display: flex;
-  align-items: center;
-  height: 100%;
+  flex-flow: column nowrap;
+  gap: 0.25rem;
+  position: relative;
+  min-height: 0;
+  padding: 1rem;
+  background: var(--color-2);
+  color: var(--color-3);
+  transition:
+    background-color 150ms ease-out,
+    color 150ms ease-out,
+    transform 150ms ease-out;
+}
+
+[data-mode="dacian"] .tile.span-12 {
+  grid-column: span 12;
+}
+
+[data-mode="dacian"] .tile h2,
+[data-mode="dacian"] .page > .cols > .col .col-item {
+  color: var(--color-5);
+}
+
+[data-mode="dacian"] .tile p {
+  line-height: 1.4;
+}
+
+[data-mode="dacian"] .tile-label,
+[data-mode="dacian"] .tile-date {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.8rem;
+}
+
+[data-mode="dacian"] .tile-label {
+  color: var(--color-4);
+}
+
+[data-mode="dacian"] .tile-date {
+  color: var(--muted);
+}
+
+[data-mode="dacian"] .triangle-dark {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
   font-family:
     "Google Sans",
     ui-sans-serif,
@@ -108,189 +253,455 @@
     "Helvetica Neue",
     Arial,
     sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--head);
-  text-transform: lowercase;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--color-4);
+  opacity: 0.55;
 }
 
-/* Dacian palette page - show light variant */
-[data-mode="dacian"] .v-dark {
-  display: none;
-}
-[data-mode="dacian"] .v-light {
-  display: contents;
-}
-
-/* Hide meadow proj-list in dacian mode (show cards instead) */
-[data-mode="dacian"] .proj-list {
-  display: none;
-}
-
-/* Dacian CSS Grid for cards */
-[data-mode="dacian"] .grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 4vh;
-  width: 100%;
-}
-
-[data-mode="dacian"] .grid-item {
-  transition: 100ms ease-out;
-  grid-column: span 6;
-  background-color: var(--color-2);
-  font-size: 1rem;
-  padding: 1rem;
-  position: relative;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 0.25rem;
-  min-height: 0rem;
-}
-
-[data-mode="dacian"] .grid-item.extra {
-  grid-column: span 4;
-}
-
-[data-mode="dacian"] .grid-item.grow:hover {
-  transition: 150ms ease-in-out;
+/* Interactive tiles: invert + grow (upstream .grow) */
+[data-mode="dacian"] .tile.grow:hover,
+[data-mode="dacian"] .tile.grow:focus-visible {
+  transition: 200ms ease-out;
+  background: var(--color-4);
   transform: scale(1.02);
   transform-origin: center;
 }
 
-[data-mode="dacian"] .triangle {
-  position: absolute;
-  bottom: 0.25rem;
-  right: 0.5rem;
-  font-family: "Google Sans";
-  color: color-mix(in srgb, var(--color-3), transparent 50%);
-}
-
-[data-mode="dacian"] .triangle-dark {
-  position: absolute;
-  bottom: 0.25rem;
-  right: 0.5rem;
-  font-family: "Google Sans";
-  color: var(--color-4);
-}
-
-/* Dacian title/subsection styles */
-[data-mode="dacian"] .title {
-  display: flex;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  flex-flow: column nowrap;
-  transform: none;
-  gap: 0.25rem;
-  background-color: var(--color-1);
-  overflow: hidden;
-}
-
-[data-mode="dacian"] .grow-text {
-  transition: 200ms ease-in;
-  font-weight: 600;
-}
-
-[data-mode="dacian"] .grow-text:hover {
-  transition: 200ms ease-out;
-  font-variant: small-caps;
-  letter-spacing: 0.1rem;
-}
-
-[data-mode="dacian"] .title h1 {
-  font-variant: small-caps;
-  color: var(--color-5);
-  font-size: 1.1rem;
-}
-
-[data-mode="dacian"] .contact,
-[data-mode="dacian"] .projects {
-  grid-column: span 7;
-}
-
-[data-mode="dacian"] .server,
-[data-mode="dacian"] .services {
-  grid-column: span 5;
-}
-
-[data-mode="dacian"] .subsection {
-  transition: 100ms ease-out;
-  background-color: var(--color-2);
-  font-size: 1rem;
-  padding: 1rem;
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
-  min-height: 0rem;
-}
-
-[data-mode="dacian"] .subsection-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  flex-flow: row wrap;
-  gap: 0.75em;
-  justify-content: center;
-}
-
-[data-mode="dacian"] .subsection-grid-item {
-  transition: 100ms ease-out;
-  position: relative;
-  padding: 1em;
-  background-color: var(--color-1);
-  border: var(--color-4) 3px solid;
-  gap: 1.5em;
-}
-
-[data-mode="dacian"] .subsection-grid-item:hover,
-[data-mode="dacian"] .subsection-grid-item:active {
-  transition: 200ms ease-out;
-  background-color: var(--color-4);
-}
-
-[data-mode="dacian"] .subsection-grid-item:hover .triangle-dark,
-[data-mode="dacian"] .subsection-grid-item:hover h2,
-[data-mode="dacian"] .subsection-grid-item:hover p {
+[data-mode="dacian"] .tile.grow:hover h2,
+[data-mode="dacian"] .tile.grow:hover p,
+[data-mode="dacian"] .tile.grow:hover .meta,
+[data-mode="dacian"] .tile.grow:hover .meta *,
+[data-mode="dacian"] .tile.grow:hover .row-title,
+[data-mode="dacian"] .tile.grow:hover .row-desc,
+[data-mode="dacian"] .tile.grow:hover .lang,
+[data-mode="dacian"] .tile.grow:hover .tile-label,
+[data-mode="dacian"] .tile.grow:hover .tile-date,
+[data-mode="dacian"] .tile.grow:hover .dacian-contact-email,
+[data-mode="dacian"] .tile.grow:hover .triangle-dark,
+[data-mode="dacian"] .tile.grow:focus-visible h2,
+[data-mode="dacian"] .tile.grow:focus-visible p,
+[data-mode="dacian"] .tile.grow:focus-visible .meta,
+[data-mode="dacian"] .tile.grow:focus-visible .meta *,
+[data-mode="dacian"] .tile.grow:focus-visible .row-title,
+[data-mode="dacian"] .tile.grow:focus-visible .row-desc,
+[data-mode="dacian"] .tile.grow:focus-visible .lang,
+[data-mode="dacian"] .tile.grow:focus-visible .tile-label,
+[data-mode="dacian"] .tile.grow:focus-visible .tile-date,
+[data-mode="dacian"] .tile.grow:focus-visible .dacian-contact-email,
+[data-mode="dacian"] .tile.grow:focus-visible .triangle-dark {
   color: var(--color-1);
 }
 
-[data-mode="dacian"] .subsection-grid-item:hover h2 {
+[data-mode="dacian"] .tile.grow:hover .triangle-dark,
+[data-mode="dacian"] .tile.grow:focus-visible .triangle-dark {
+  opacity: 0.8;
+}
+
+[data-mode="dacian"] .tile:focus-visible,
+[data-mode="dacian"] .page > .post-row:focus-visible {
+  outline: 2px solid var(--color-4);
+  outline-offset: 2px;
+}
+
+[data-mode="dacian"] .tile[aria-current="page"] {
+  background: var(--color-4);
+  color: var(--color-1);
+}
+
+[data-mode="dacian"] .tile[aria-current="page"] h2,
+[data-mode="dacian"] .tile[aria-current="page"] p,
+[data-mode="dacian"] .tile[aria-current="page"] .triangle-dark {
+  color: var(--color-1);
+}
+
+/* ---- Grids ---- */
+[data-mode="dacian"] .dacian-directory-grid,
+[data-mode="dacian"] .page {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+[data-mode="dacian"] .dacian-directory {
+  display: block;
+}
+
+/* Unknown direct children of a page board default to full width. */
+[data-mode="dacian"] .page > * {
+  grid-column: span 12;
+}
+
+[data-mode="dacian"] .page {
+  max-width: none;
+  padding-top: 0;
+}
+
+/* Deck grids (cards pages) dissolve into the board */
+[data-mode="dacian"] .page .grid {
+  display: contents;
+}
+
+/* ---- Page masthead tile (h1 + lede in one tile) ---- */
+[data-mode="dacian"] .page > .page-head {
+  grid-column: span 12;
+  justify-content: center;
+}
+
+[data-mode="dacian"] .page-head h1 {
+  margin: 0;
+  color: var(--color-5);
+  font-size: 1.2rem;
   font-variant: small-caps;
-  letter-spacing: 0rem;
 }
 
-/* Dacian nav */
-[data-mode="dacian"] .nav a.active {
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
+[data-mode="dacian"] .page-head .lede {
+  margin: 0;
+  max-width: none;
+  color: var(--color-3);
+  font-size: 1rem;
 }
 
-/* Dacian floor */
-[data-mode="dacian"] .floor {
-  height: 120px;
+/* ---- Home (the board is the directory; greeting lives on the masthead) ---- */
+[data-mode="dacian"] .home {
+  display: none;
 }
 
-/* Dacian button styles */
+/* ---- Writing list ---- */
+[data-mode="dacian"] .page > .filter {
+  grid-column: span 12;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0;
+  padding: 0.6rem 1rem;
+  border-bottom: 0;
+}
+
+[data-mode="dacian"] .page .filter button {
+  height: auto;
+  padding: 0.15rem 0.6rem;
+  border: 0;
+  background: var(--color-1);
+  line-height: 1.2;
+  font-size: 0.85rem;
+  color: var(--color-4);
+  transition:
+    background-color 150ms ease-out,
+    color 150ms ease-out;
+}
+
+[data-mode="dacian"] .page .filter button:hover {
+  color: var(--color-5);
+}
+
+[data-mode="dacian"] .page .filter button.active {
+  background: var(--color-4);
+  color: var(--color-1);
+}
+
+[data-mode="dacian"] .page .filter .count {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.8rem;
+}
+
+[data-mode="dacian"] .page > .post-row {
+  grid-column: span 6;
+  border-bottom: 0;
+}
+
+[data-mode="dacian"] .page .row-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-5);
+}
+
+[data-mode="dacian"] .page .row-desc {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--color-3);
+}
+
+[data-mode="dacian"] .page .meta {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.75rem;
+}
+
+[data-mode="dacian"] .page > .post-row[hidden] {
+  display: none;
+}
+
+[data-mode="dacian"] .page .empty {
+  color: var(--muted);
+}
+
+[data-mode="dacian"] .page .empty[hidden] {
+  display: none;
+}
+
+[data-mode="dacian"] .page .endlink {
+  margin-top: 0;
+  align-self: flex-start;
+  color: var(--color-4);
+  font-size: 0.85rem;
+}
+
+[data-mode="dacian"] .page .endlink:hover {
+  color: var(--color-5);
+}
+
+/* ---- About columns dissolve into two tiles ---- */
+[data-mode="dacian"] .page > .cols {
+  display: contents;
+}
+
+[data-mode="dacian"] .page .col-label {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.8rem;
+  color: var(--color-4);
+  padding-bottom: 0.5rem;
+}
+
+[data-mode="dacian"] .page .col-item {
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--color-3);
+}
+
+[data-mode="dacian"] .page .col-item .accent {
+  color: var(--color-4);
+}
+
+/* ---- Friends: badge board ---- */
+[data-mode="dacian"] .page > .badge-own {
+  grid-column: span 12;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+[data-mode="dacian"] .page > .badges {
+  grid-column: span 12;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0;
+  padding-top: 1rem;
+  border-top: 0;
+}
+
+[data-mode="dacian"] .badge-info {
+  gap: 0.5rem;
+}
+
+[data-mode="dacian"] .badge-info code {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-1);
+  color: var(--color-4);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* ---- Made page: project rows become tiles ---- */
+[data-mode="dacian"] .page .proj-list {
+  display: contents;
+}
+
+[data-mode="dacian"] .proj-list.deck-list {
+  display: none;
+}
+
+[data-mode="dacian"] .page .proj {
+  border-top: 0;
+}
+
+[data-mode="dacian"] .page .proj-head .lang {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.8rem;
+}
+
+/* ---- Buttons: flat chips ---- */
 [data-mode="dacian"] .btn {
-  border: 1px solid var(--line);
+  height: auto;
+  padding: 0.2rem 0.6rem;
+  border: 0;
+  background: var(--color-1);
+  font-size: 0.85rem;
+  color: var(--color-4);
 }
 
-[data-mode="dacian"] .filter button {
-  border: 1px solid var(--line);
+[data-mode="dacian"] .btn:hover {
+  color: var(--color-5);
 }
 
-[data-mode="dacian"] .filter button.active {
-  background: var(--accent);
-  color: var(--base);
+/* ---- Post page: one document tile ---- */
+[data-mode="dacian"] .post {
+  max-width: none;
+  padding: 1.5rem;
+  background: var(--color-2);
 }
 
-/* Dacian responsive */
+[data-mode="dacian"] .post h1 {
+  margin: 0 0 0.5rem;
+  color: var(--color-5);
+  font-size: 1.2rem;
+  font-variant: small-caps;
+}
+
+[data-mode="dacian"] .post > .meta {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.75rem;
+}
+
+[data-mode="dacian"] .post > .meta a {
+  color: var(--color-4);
+}
+
+[data-mode="dacian"] .prose {
+  padding-top: 1.5rem;
+}
+
+[data-mode="dacian"] .prose h2 {
+  margin: 2rem 0 0.5rem;
+  color: var(--color-5);
+  font-size: 1.05rem;
+}
+
+[data-mode="dacian"] .prose h3 {
+  margin: 1.5rem 0 0.4rem;
+  color: var(--color-4);
+  font-size: 0.95rem;
+}
+
+[data-mode="dacian"] .prose p,
+[data-mode="dacian"] .prose ul,
+[data-mode="dacian"] .prose ol {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-3);
+}
+
+[data-mode="dacian"] .prose i,
+[data-mode="dacian"] .prose em,
+[data-mode="dacian"] .prose b,
+[data-mode="dacian"] .prose strong {
+  color: var(--color-5);
+}
+
+[data-mode="dacian"] .prose a {
+  color: var(--color-4);
+}
+
+[data-mode="dacian"] .prose code {
+  font-family:
+    "Google Sans Code", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    monospace;
+  font-size: 0.85rem;
+  color: var(--color-4);
+  background: var(--color-1);
+  padding: 1px 6px;
+}
+
+[data-mode="dacian"] .prose pre {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-1);
+  overflow-x: auto;
+}
+
+[data-mode="dacian"] .post-end {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+[data-mode="dacian"] .post-end a {
+  color: var(--color-4);
+}
+
+/* ---- Footer band: the board's base plate ---- */
+[data-mode="dacian"] .foot {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-2);
+  font-size: 0.85rem;
+  color: var(--color-4);
+}
+
+[data-mode="dacian"] .foot > a {
+  color: var(--color-4);
+}
+
+[data-mode="dacian"] .foot > a:hover {
+  color: var(--color-5);
+}
+
+[data-mode="dacian"] .foot > a:focus-visible {
+  outline: 2px solid var(--color-4);
+  outline-offset: 2px;
+}
+
+[data-mode="dacian"] .foot .mode-picker {
+  margin-left: auto;
+  gap: 0.25rem;
+}
+
+[data-mode="dacian"] .mode-picker label span {
+  display: block;
+  padding: 0.15rem 0.6rem;
+  color: var(--color-4);
+  font-size: 0.85rem;
+  transition:
+    background-color 150ms ease-out,
+    color 150ms ease-out;
+}
+
+[data-mode="dacian"] .mode-picker input:checked + span {
+  background: var(--color-4);
+  color: var(--color-1);
+}
+
+[data-mode="dacian"] .mode-picker input:focus-visible + span {
+  outline: 2px solid var(--color-4);
+  outline-offset: 2px;
+}
+
+/* ---- Palette page variants / no floor ---- */
+[data-mode="dacian"] .v-dark {
+  display: none;
+}
+
+[data-mode="dacian"] .v-light {
+  display: contents;
+}
+
+[data-mode="dacian"] .floor {
+  display: none;
+}
+
+/* ---- Responsive (upstream width tiers) ---- */
 @media (max-width: 1200px) {
   html[data-mode="dacian"] {
     font-size: 20px;
@@ -301,33 +712,87 @@
   html[data-mode="dacian"] {
     font-size: 20px;
   }
-  [data-mode="dacian"] .wrapper {
+  [data-mode="dacian"] .shell-dacian {
     width: 100%;
-    padding-top: 2rem;
-    max-height: 100%;
-    min-height: 0;
-    align-items: flex-start;
+    padding: 1rem 0.5rem;
+    justify-content: flex-start;
   }
-  [data-mode="dacian"] .content {
-    max-width: 100%;
-    padding: 0 0.5rem;
-    margin-bottom: 0.5rem;
+  [data-mode="dacian"] .dacian-header {
+    grid-template-columns: 1fr;
+    position: static;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
-  [data-mode="dacian"] .grid {
-    max-width: 100%;
-    padding: 0 0.5rem;
-    width: 100%;
-    margin: auto;
-    display: flex;
-    flex-flow: column nowrap;
+  [data-mode="dacian"] .dacian-directory-grid,
+  [data-mode="dacian"] .page {
+    grid-template-columns: 1fr;
   }
-  [data-mode="dacian"] .grid-item:hover {
+  [data-mode="dacian"] .tile,
+  [data-mode="dacian"] .tile.span-12,
+  [data-mode="dacian"] .dacian-title-card,
+  [data-mode="dacian"] .page > *,
+  [data-mode="dacian"] .page > .cols > .col,
+  [data-mode="dacian"] .page > .proj-list > .proj {
+    grid-column: 1 / -1;
+  }
+  [data-mode="dacian"] .tile.grow:hover,
+  [data-mode="dacian"] .tile.grow:focus-visible {
+    background: var(--color-2);
     transform: none;
   }
-  [data-mode="dacian"] .subsection-grid {
-    display: flex;
+  [data-mode="dacian"] .tile.grow:hover h2,
+  [data-mode="dacian"] .tile.grow:hover p,
+  [data-mode="dacian"] .tile.grow:hover .meta,
+  [data-mode="dacian"] .tile.grow:hover .meta *,
+  [data-mode="dacian"] .tile.grow:hover .row-title,
+  [data-mode="dacian"] .tile.grow:hover .row-desc,
+  [data-mode="dacian"] .tile.grow:hover .lang,
+  [data-mode="dacian"] .tile.grow:hover .tile-label,
+  [data-mode="dacian"] .tile.grow:hover .tile-date,
+  [data-mode="dacian"] .tile.grow:hover .dacian-contact-email,
+  [data-mode="dacian"] .tile.grow:hover .triangle-dark {
+    color: var(--color-3);
   }
-  [data-mode="dacian"] .subsection-grid-item {
-    flex-basis: 100%;
+  [data-mode="dacian"] .tile.grow:hover h2,
+  [data-mode="dacian"] .tile.grow:hover .row-title {
+    color: var(--color-5);
+  }
+  [data-mode="dacian"] .tile.grow:hover .triangle-dark,
+  [data-mode="dacian"] .tile.grow:hover .tile-label,
+  [data-mode="dacian"] .tile.grow:hover .dacian-contact-email,
+  [data-mode="dacian"] .tile.grow:hover .lang {
+    color: var(--color-4);
+  }
+}
+
+/* Short-viewport safety net: shrink the root size so the board still fits. */
+@media (max-height: 760px) {
+  html[data-mode="dacian"] {
+    font-size: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  html[data-mode="dacian"] {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="dacian"] .tile,
+  [data-mode="dacian"] .mode-picker label span,
+  [data-mode="dacian"] .filter button,
+  [data-mode="dacian"] .grow-text {
+    transition: none;
+  }
+
+  [data-mode="dacian"] .tile.grow:hover,
+  [data-mode="dacian"] .tile.grow:focus-visible {
+    transform: none;
+  }
+
+  [data-mode="dacian"] .grow-text:hover {
+    font-variant: normal;
+    letter-spacing: normal;
   }
 }
