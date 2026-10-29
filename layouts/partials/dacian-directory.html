@@ -12,7 +12,7 @@
       {{- end }}
     {{- end }}
     {{- with $posts }}{{ with index . 0 }}
-      <a class="tile grow span-6" href="{{ .RelPermalink }}">
+      <a class="tile grow span-4" href="{{ .RelPermalink }}">
         <span class="tile-label">latest</span>
         <h2>{{ .Title }}</h2>
         <span class="tile-date">{{ .Date.Format "Jan 2, 2006" }}</span>

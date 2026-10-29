@@ -4,9 +4,9 @@
     "description": "open source learning experiences",
     "cards": [
       {
-        "name": "aleis",
+        "name": "aleis.dev",
         "description": "the site you are reading, built with Hugo",
-        "url": "https://github.com/analeis/aleis"
+        "url": "https://github.com/analeis/aleis.dev"
       },
       {
         "name": "meadow",

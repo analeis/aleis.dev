@@ -1,6 +1,6 @@
 {{ define "main" }} {{- $deck := false }} {{- range where hugo.Data.cards "name"
 .Params.deck }}{{ $deck = . }}{{ end }}
-<div class="page">
+<div class="page page--cards">
   <div class="page-head">
     <h1>{{ .Title }}</h1>
     {{ with .Description }}
@@ -9,7 +9,7 @@
   </div>
   {{- with $deck }}
   <!-- Dacian mode: card grid -->
-  <div class="grid">
+  <div class="grid card-grid">
     {{- range .cards }}
     <a class="tile grow" href="{{ .url }}">
       <h2>{{ .name }}</h2>

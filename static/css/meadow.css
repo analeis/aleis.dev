@@ -48,7 +48,7 @@
 }
 
 [data-mode="meadow"] .floor {
-  height: 240px;
+  height: clamp(60px, 8vh, 120px);
   flex: none;
 }
 

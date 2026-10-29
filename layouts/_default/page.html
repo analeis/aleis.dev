@@ -1,9 +1,9 @@
 {{ define "main" }}
-<div class="page">
+<div class="page page--content">
   <div class="page-head">
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
   </div>
-  {{ .Content }}
+  <div class="page-body">{{ .Content }}</div>
 </div>
 {{ end }}

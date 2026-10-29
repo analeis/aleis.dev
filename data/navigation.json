@@ -4,7 +4,7 @@
     "url": "/writing/",
     "meadow": "writing",
     "dacian": "writing",
-    "dacianSpan": 6,
+    "dacianSpan": 4,
     "description": "notes on software and whatever else i've been thinking about"
   },
   {
@@ -17,7 +17,7 @@
     "id": "projects",
     "url": "/projects/",
     "dacian": "projects",
-    "dacianSpan": 6,
+    "dacianSpan": 4,
     "description": "open source learning experiences"
   },
   {
@@ -25,7 +25,7 @@
     "url": "/software/",
     "meadow": "software",
     "dacian": "software",
-    "dacianSpan": 6,
+    "dacianSpan": 4,
     "description": "software i like to self-host"
   },
   {
@@ -33,7 +33,7 @@
     "url": "/friends/",
     "meadow": "friends",
     "dacian": "friends",
-    "dacianSpan": 6,
+    "dacianSpan": 4,
     "description": "people and places worth visiting"
   },
   {
@@ -41,7 +41,7 @@
     "url": "/about/",
     "meadow": "about",
     "dacian": "about",
-    "dacianSpan": 6,
+    "dacianSpan": 4,
     "description": "a little more about aleis"
   }
 ]
